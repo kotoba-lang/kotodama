@@ -9,6 +9,16 @@ This is the runtime extracted from `etzhayyim/kototama` (per the ADR superseding
 / data) moves to a concrete actor in `etzhayyim/root` `20-actors/unspsc`; the
 **generic** organism machinery lives here, reusable by any actor family.
 
+**Not to be confused with [`kotoba-lang/kototama`](https://github.com/kotoba-lang/kototama)**
+— both names romanize the same word (言霊/言魂, "word-spirit"; "kotodama" and
+"kototama" are two real, independently-attested readings of the same kanji,
+not a typo), but the repos are unrelated in scope: `kototama` is the Wasm
+*execution runtime* (the `tender` in the `kotoba-lang → kototama → aiueos`
+stack, ADR-2607022400/2607062330); this repo is the functional-organism
+runtime described above. ADR-2607050900 audited the naming overlap and found
+no functional duplication — just an undocumented spelling split, which this
+note closes.
+
 ## Layers
 
 ```
