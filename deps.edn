@@ -15,5 +15,5 @@
          :main-opts ["-m" "cognitect.test-runner"]
          :exec-fn cognitect.test-runner.api/test}
   ;; local workspace dev (siblings under orgs/com-junkawasaki/)
-  :dev {:override-deps {io.github.com-junkawasaki/langgraph-clj {:local/root "../langgraph-clj"}
-                        io.github.com-junkawasaki/langchain-clj {:local/root "../langchain-clj"}}}}}
+  :dev {:override-deps {io.github.com-junkawasaki/langgraph-clj {:local/root "../langgraph"}
+                        io.github.com-junkawasaki/langchain-clj {:local/root "../langchain"}}}}}
