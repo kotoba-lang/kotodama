@@ -6,7 +6,8 @@ into a living organism persisted as-of on the kotoba Datom log.
 
 This is the runtime extracted from `etzhayyim/kototama` (per the ADR superseding
 2606131645): the **UNSPSC-specific** implementation (capability / taxonomy / fleet
-/ data) moves to a concrete actor in `etzhayyim/root` `20-actors/unspsc`; the
+/ data) lives in a concrete flat actor repository such as
+`etzhayyim/com-etzhayyim-unspsc`; the
 **generic** organism machinery lives here, reusable by any actor family.
 
 **Not to be confused with [`kotoba-lang/kototama`](https://github.com/kotoba-lang/kototama)**
@@ -41,6 +42,9 @@ concrete actor (e.g. etzhayyim/root 20-actors/unspsc) — domain data + logic
   callers supply the repository root, keeping the organism runtime free of deployment state.
 - `kotodama.react` — `capability-tools` + `react-actor` (a genuine ReAct loop over the
   actor's capability, on langgraph-clj's create-react-agent).
+- `kotoba.datom` — content-addressed append-only EAVT transactions. EDN log
+  records are canonical; JSON exists only as the deterministic cross-runtime
+  CID preimage and is not persisted as authoritative state.
 
 ## Use
 
