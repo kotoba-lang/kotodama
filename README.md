@@ -36,6 +36,9 @@ concrete actor (e.g. etzhayyim/root 20-actors/unspsc) — domain data + logic
 - `kotodama.organism` — `(actor {:taxon :validate :emit :model :compile-opts})` builds a
   `validate → reason → emit` StateGraph; `(run actor input {:thread-id ..})` invokes it.
   Murakumo-grounded reasoning (fail-open template); opt-in prior-consensus shortcut.
+- `kotodama.organism.sensors.*` — reusable, read-only repository health sensors and Charter
+  gates. These are the CLJC survivors of the deprecated `etzhayyim-organism` Python package;
+  callers supply the repository root, keeping the organism runtime free of deployment state.
 - `kotodama.react` — `capability-tools` + `react-actor` (a genuine ReAct loop over the
   actor's capability, on langgraph-clj's create-react-agent).
 
@@ -53,7 +56,7 @@ concrete actor (e.g. etzhayyim/root 20-actors/unspsc) — domain data + logic
 ```
 
 ```bash
-clojure -X:test        # 7 tests / 17 assertions, domain-free mock actor
+clojure -X:test        # runtime plus sensor suites
 ```
 
 Apache-2.0. Inference stays Murakumo-only at runtime (ADR-2605215000).
