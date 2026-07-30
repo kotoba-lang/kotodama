@@ -6,8 +6,7 @@ into a living organism persisted as-of on the kotoba Datom log.
 
 This is the runtime extracted from `etzhayyim/kototama` (per the ADR superseding
 2606131645): the **UNSPSC-specific** implementation (capability / taxonomy / fleet
-/ data) lives in a concrete flat actor repository such as
-`etzhayyim/com-etzhayyim-unspsc`; the
+/ data) moves to a concrete actor in `etzhayyim/root` `20-actors/unspsc`; the
 **generic** organism machinery lives here, reusable by any actor family.
 
 **Not to be confused with [`kotoba-lang/kototama`](https://github.com/kotoba-lang/kototama)**
@@ -37,14 +36,8 @@ concrete actor (e.g. etzhayyim/root 20-actors/unspsc) — domain data + logic
 - `kotodama.organism` — `(actor {:taxon :validate :emit :model :compile-opts})` builds a
   `validate → reason → emit` StateGraph; `(run actor input {:thread-id ..})` invokes it.
   Murakumo-grounded reasoning (fail-open template); opt-in prior-consensus shortcut.
-- `kotodama.organism.sensors.*` — reusable, read-only repository health sensors and Charter
-  gates. These are the CLJC survivors of the deprecated `etzhayyim-organism` Python package;
-  callers supply the repository root, keeping the organism runtime free of deployment state.
 - `kotodama.react` — `capability-tools` + `react-actor` (a genuine ReAct loop over the
   actor's capability, on langgraph-clj's create-react-agent).
-- `kotoba.datom` — content-addressed append-only EAVT transactions. EDN log
-  records are canonical; JSON exists only as the deterministic cross-runtime
-  CID preimage and is not persisted as authoritative state.
 
 ## Use
 
@@ -60,7 +53,13 @@ concrete actor (e.g. etzhayyim/root 20-actors/unspsc) — domain data + logic
 ```
 
 ```bash
-clojure -X:test        # runtime plus sensor suites
+clojure -X:test        # 7 tests / 17 assertions, domain-free mock actor
 ```
 
 Apache-2.0. Inference stays Murakumo-only at runtime (ADR-2605215000).
+
+## Aozora compatibility boundary
+
+The former Aozora-local Kotoba Datom compatibility namespace is maintained here
+at `src/aozora-compat/`. Aozora is a deployment boundary and must import this
+runtime rather than carrying a second source copy.
