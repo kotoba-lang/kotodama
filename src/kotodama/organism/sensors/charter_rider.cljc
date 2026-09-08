@@ -12,7 +12,8 @@
      (def r (cr/scan text))
      (:ok r)             ; => boolean
      (:hits r)           ; => [{:section :label :term :snippet} ...]
-     (cr/reason r)       ; => \"ok\" | \"§2(a) 'weapon'…\"")
+     (cr/reason r)       ; => \"ok\" | \"§2(a) 'weapon'…\""
+  (:require [kotoba.lang.text]))
 
 ;; ---------------------------------------------------------------------------
 ;; Hit and ScanResult (mirror the Python @dataclass Hit + ScanResult)
@@ -31,7 +32,7 @@
     "ok"
     (->> (take 3 hits)
          (map #(str (:section %) " " (pr-str (:term %))))
-         (clojure.string/join "; "))))
+         (kotoba.lang.text/join "; "))))
 
 ;; ---------------------------------------------------------------------------
 ;; §2 Rules — same patterns as the Python version (case-insensitive)
@@ -88,7 +89,7 @@
                                            s-start (max 0 (- start 40))
                                            s-end   (min (count text) (+ end 40))
                                            snippet (-> (subs text s-start s-end)
-                                                       (clojure.string/replace #"\n" " "))]
+                                                       (kotoba.lang.text/replace #"\n" " "))]
                                        (recur (re-find matcher)
                                               (conj acc (->Hit section label term snippet))))))]
                      hit found]
@@ -113,4 +114,4 @@
           (swap! lines conj (str "      " t)))))
     (swap! lines conj "")
     (swap! lines conj "Source of truth: /CHARTER-RIDER.md §2 (per ADR-2605192200 v2.0).")
-    (clojure.string/join "\n" @lines)))
+    (kotoba.lang.text/join "\n" @lines)))
