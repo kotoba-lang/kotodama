@@ -11,7 +11,7 @@
   State persists as-of on the kotoba Datom log via the langgraph checkpointer
   (pass {:checkpointer cp} in :compile-opts), giving each actor a lived history.
   Runtime contract: (run actor input opts) -> the :result map."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [langgraph.graph :as g]
             [langchain.model :as lcm]
             [langchain.message :as msg]

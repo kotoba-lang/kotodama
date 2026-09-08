@@ -5,7 +5,7 @@
   "Axis 4 — Active Inference: persisted observations grow, trajectory-stats works,
    stall detection emits ADRs.  Observable: _observations/*-cycle-NN.md count + monotonicity."
   (:require [kotodama.organism.sensors.common :as c]
-            [clojure.string :as str]))
+            [kotoba.lang.text :as str]))
 
 (def ^:private cycle-pattern
   "Regex matching -cycle-<digits>.md at end of filename."

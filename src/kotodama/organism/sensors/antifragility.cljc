@@ -5,7 +5,7 @@
   "Axis 9 — Anti-fragility: chaos engineering charter + transparent force registry
    + demonstrated recovery from real failures.
    Observable: chaos charter, force-rd package, Scenario rotation breadth."
-  (:require [kotodama.organism.sensors.common :as c]))
+  (:require [kotoba.lang.text] [kotodama.organism.sensors.common :as c]))
 
 (defn read
   "Compute the antifragility AxisReading for `repo` (string path)."
@@ -17,9 +17,9 @@
         base     (java.io.File. (str repo) "90-docs")
         chaos    (when (.isDirectory base)
                    (->> (.listFiles base)
-                        (filter #(let [n (clojure.string/lower-case (.getName %))]
-                                   (and (clojure.string/includes? n "chaos")
-                                        (clojure.string/includes? n "charter"))))
+                        (filter #(let [n (kotoba.lang.text/lower (.getName %))]
+                                   (and (kotoba.lang.text/includes? n "chaos")
+                                        (kotoba.lang.text/includes? n "charter"))))
                         seq))]
 
     (when chaos

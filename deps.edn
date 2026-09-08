@@ -6,7 +6,12 @@
  ;; graph, and the ReAct template — persisted as-of on the kotoba Datom log.
  ;;   langgraph — StateGraph + create-react-agent + datomic-checkpointer
  ;;   langchain — ChatModel (Murakumo via openai-model) + kotoba-db backend (transitive)
- :deps {io.github.kotoba-lang/langgraph
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}
+       io.github.kotoba-lang/langgraph
         {:git/tag "v0.2.1" :sha "eaab7d9bf4b66a76bf0927298b53232e4e6c6ed6"}}
  :aliases
  {:test {:extra-paths ["test"]

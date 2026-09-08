@@ -5,7 +5,7 @@
   "Axis 8 — Wellbecoming: dynamic trajectory across generations.
    Observable: MGI compute script, LANDS.md (inalienable inheritance),
    MEMBERS.md (multi-generation roster)."
-  (:require [kotodama.organism.sensors.common :as c]))
+  (:require [kotoba.lang.text] [kotodama.organism.sensors.common :as c]))
 
 (defn read
   "Compute the wellbecoming AxisReading for `repo` (string path)."
@@ -32,8 +32,8 @@
     ;; (the Python code has an erroneous `.is_file()` path check on _observations/ — port faithfully
     ;; matches the intent, which is to look at CLAUDE.md for multi-gen tokens)
     (let [txt (c/read-text repo "CLAUDE.md")]
-      (when (or (clojure.string/includes? txt "子・孫")
-                (clojure.string/includes? (clojure.string/lower-case txt) "multi-generation"))
+      (when (or (kotoba.lang.text/includes? txt "子・孫")
+                (kotoba.lang.text/includes? (kotoba.lang.text/lower txt) "multi-generation"))
         (add! 2 "CLAUDE.md affirms multi-generational priority")))
 
     (let [final-score (min @score 10)

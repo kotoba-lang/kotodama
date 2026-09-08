@@ -31,7 +31,7 @@
      (:hits r)           ; => own §1.16(a)-(d) hits
      (:charter-hits r)   ; => delegated charter-rider §2 hits
      (eg/reason r)       ; => \"ok\" | \"§1.16(a) '...'…\""
-  (:require [kotodama.organism.sensors.charter-rider :as cr]))
+  (:require [kotoba.lang.text] [kotodama.organism.sensors.charter-rider :as cr]))
 
 ;; ---------------------------------------------------------------------------
 ;; Hit and GateResult (mirror the Python @dataclass Hit + GateResult)
@@ -51,7 +51,7 @@
     (->> (concat (take 3 hits) (take 3 charter-hits))
          (take 3)
          (map #(str (:section %) " " (pr-str (:term %))))
-         (clojure.string/join "; "))))
+         (kotoba.lang.text/join "; "))))
 
 ;; ---------------------------------------------------------------------------
 ;; §1.16(a)-(c) rules — same patterns as the Python version (case-insensitive)
@@ -100,11 +100,11 @@
                 end     (.end matcher)
                 s-start (max 0 (- start 40))
                 s-end   (min (count text) (+ end 40))
-                snippet (clojure.string/replace (subs text s-start s-end) #"\n" " ")]
+                snippet (kotoba.lang.text/replace (subs text s-start s-end) #"\n" " ")]
             (recur (conj acc [term snippet]))))))))
 
 (defn- own-hits [text]
-  (if (clojure.string/blank? text)
+  (if (kotoba.lang.text/blank? text)
     []
     (vec (for [[section label patterns] rules
                pat patterns
@@ -122,7 +122,7 @@
    (let [charter-result (cr/scan text)
          hits           (own-hits text)
          has-opt-out?   (or opt-out-present?
-                            (and (not (clojure.string/blank? text))
+                            (and (not (kotoba.lang.text/blank? text))
                                  (re-find opt-out-pattern text)))
          hits           (if has-opt-out?
                           hits
@@ -149,4 +149,4 @@
     (swap! lines conj "  §1.16(d) NO OPT-OUT AFFORDANCE (positive requirement, not a denylist)")
     (swap! lines conj "")
     (swap! lines conj "Source of truth: ADR-2607061700 §1.16 (Mission Charter ADR-2605192100 §1.16).")
-    (clojure.string/join "\n" @lines)))
+    (kotoba.lang.text/join "\n" @lines)))

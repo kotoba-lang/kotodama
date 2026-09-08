@@ -4,7 +4,7 @@
 (ns kotodama.organism.sensors.reproduction
   "Axis 5 — Reproduction: fork-bootstrap path documented + ≥1 sister-corp fork.
    Observable: FORK-BOOTSTRAP.md + sister-corp registrations."
-  (:require [kotodama.organism.sensors.common :as c]))
+  (:require [kotoba.lang.text] [kotodama.organism.sensors.common :as c]))
 
 (defn read
   "Compute the reproduction AxisReading for `repo` (string path)."
@@ -17,7 +17,7 @@
     (when (c/has? repo fb)
       (add! 3 (str fb " present"))
       (let [body (c/read-text repo fb)]
-        (when (clojure.string/includes? body "did:web:")
+        (when (kotoba.lang.text/includes? body "did:web:")
           (add! 1 "Fork bootstrap mentions did:web (identity-rotated forks)"))
         (when (> (count body) 2000)
           (add! 1 "Fork bootstrap is substantive (>2000 chars)"))))

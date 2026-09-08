@@ -9,7 +9,7 @@
      3. Charter-rider scan correctness (clean / fossil / promo / surveillance).
      4. count-glob optimisation — shallow patterns don't descend full tree.
      5. Evangelism gate correctness (ADR-2607061700 §1.16 carve-out)."
-  (:require [clojure.test :refer [deftest is testing run-tests]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is testing run-tests]]
             [kotodama.organism.sensors.common :as c]
             [kotodama.organism.sensors.autopoiesis :as ap]
             [kotodama.organism.sensors.active-inference :as ai]
@@ -167,7 +167,7 @@
   (testing "explain returns multi-line string listing all rules"
     (let [exp (cr/explain)]
       (is (string? exp))
-      (is (> (count (clojure.string/split-lines exp)) 3)))))
+      (is (> (count (kotoba.lang.text/split-lines exp)) 3)))))
 
 (deftest test-charter-rider-scan-result-keys
   (testing "scan result has expected keys"
@@ -242,7 +242,7 @@
     (let [exp (eg/explain)]
       (is (string? exp))
       (doseq [section ["§1.16(a)" "§1.16(b)" "§1.16(c)" "§1.16(d)"]]
-        (is (clojure.string/includes? exp section))))))
+        (is (kotoba.lang.text/includes? exp section))))))
 
 ;; ---------------------------------------------------------------------------
 ;; Runner

@@ -7,7 +7,8 @@
 ;;        -e "(require 'kotodama.organism.sensors.common)"
 (ns kotodama.organism.sensors.common
   "Shared types and helpers for organism sensors.
-   Port of src/etzhayyim_organism/sensors/common.py")
+   Port of src/etzhayyim_organism/sensors/common.py"
+  (:require [kotoba.lang.text]))
 
 ;; ---------------------------------------------------------------------------
 ;; AxisReading record (mirrors the Python dataclass)
@@ -40,10 +41,10 @@
   [repo pattern]
   (let [sep     (java.io.File/separator)
         ;; Split on / or \\ to get components
-        parts   (clojure.string/split pattern #"[/\\]")
+        parts   (kotoba.lang.text/split pattern #"[/\\]")
         ;; Take the leading literal (no wildcard) components
-        literal (take-while #(not (clojure.string/includes? % "*")) parts)
-        prefix  (clojure.string/join sep literal)
+        literal (take-while #(not (kotoba.lang.text/includes? % "*")) parts)
+        prefix  (kotoba.lang.text/join sep literal)
         sub     (java.io.File. (str repo) prefix)
         root    (if (and (seq literal) (.isDirectory sub)) sub (java.io.File. (str repo)))]
     root))
@@ -65,8 +66,8 @@
             fs        (java.nio.file.FileSystems/getDefault)
             ;; Matcher always evaluates the repo-relative path
             matcher   (.getPathMatcher fs (str "glob:" pattern))
-            deep?     (clojure.string/includes? pattern "**")
-            parts     (count (clojure.string/split pattern #"[/\\]"))
+            deep?     (kotoba.lang.text/includes? pattern "**")
+            parts     (count (kotoba.lang.text/split pattern #"[/\\]"))
             depth     (if deep? Integer/MAX_VALUE parts)
             walk-opts (into-array java.nio.file.FileVisitOption [])]
         (->> (java.nio.file.Files/walk walk-root depth walk-opts)
