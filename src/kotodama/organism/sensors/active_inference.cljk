@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Axis 4 — Active Inference (能動推論 / 縁起).
 ;; Port of src/etzhayyim_organism/sensors/active_inference.py
 (ns kotodama.organism.sensors.active-inference

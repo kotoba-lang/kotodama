@@ -1,9 +1,9 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; etzhayyim-organism sensors — shared helpers (clj-native port of common.py).
 ;; Faithful 1:1 port — no IO beyond java.io.File / java.nio.file.
 ;;
 ;; Classpath: src
-;; Load:  bb --classpath src
+;; Load:  kbb --classpath src
 ;;        -e "(require 'kotodama.organism.sensors.common)"
 (ns kotodama.organism.sensors.common
   "Shared types and helpers for organism sensors.

@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Axis 5 — Reproduction (生殖 / 八百万 propagation).
 ;; Port of src/etzhayyim_organism/sensors/reproduction.py
 (ns kotodama.organism.sensors.reproduction

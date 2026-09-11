@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Axis 2 — Metabolism (代謝 / 産霊 musuhi).
 ;; Port of src/etzhayyim_organism/sensors/metabolism.py
 (ns kotodama.organism.sensors.metabolism

@@ -53,7 +53,7 @@ concrete actor (e.g. etzhayyim/root 20-actors/unspsc) — domain data + logic
 ```
 
 ```bash
-clojure -X:test        # 7 tests / 17 assertions, domain-free mock actor
+kbb -X:test        # 7 tests / 17 assertions, domain-free mock actor
 ```
 
 Apache-2.0. Inference stays Murakumo-only at runtime (ADR-2605215000).

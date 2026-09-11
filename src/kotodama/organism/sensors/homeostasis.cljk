@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Axis 3 — Homeostasis (恒常性 / 和).
 ;; Port of src/etzhayyim_organism/sensors/homeostasis.py
 (ns kotodama.organism.sensors.homeostasis

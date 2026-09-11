@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Charter Rider v2.0 §2 content scanner (clj-native port of charter_rider.py).
 ;; Port of src/etzhayyim_organism/sensors/charter_rider.py
 (ns kotodama.organism.sensors.charter-rider

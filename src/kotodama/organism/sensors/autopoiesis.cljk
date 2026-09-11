@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Axis 1 — Autopoiesis (自己創出 / 無教会 万人祭司).
 ;; Port of src/etzhayyim_organism/sensors/autopoiesis.py
 (ns kotodama.organism.sensors.autopoiesis
