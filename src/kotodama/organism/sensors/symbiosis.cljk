@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Axis 6 — Symbiosis (共生 / Tree of Life branches).
 ;; Port of src/etzhayyim_organism/sensors/symbiosis.py
 (ns kotodama.organism.sensors.symbiosis

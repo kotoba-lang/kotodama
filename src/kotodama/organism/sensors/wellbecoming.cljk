@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Axis 8 — Wellbecoming (動的軌跡 / 子・孫 priority).
 ;; Port of src/etzhayyim_organism/sensors/wellbecoming.py
 (ns kotodama.organism.sensors.wellbecoming

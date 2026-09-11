@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Evangelism Gate — ADR-2607061700 §1.16 invitational-content carve-out scanner.
 ;; cljc-native (no Python counterpart — unlike charter_rider.py/.cljc, this
 ;; sensor is authored directly in Clojure per repo convention).

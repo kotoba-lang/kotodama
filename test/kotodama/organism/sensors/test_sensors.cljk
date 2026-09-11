@@ -1,6 +1,6 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Parity + unit tests for all 12 cljc sensor ports + the evangelism gate.
-;; Run: REPO=/path/to/body clojure -M:test -n kotodama.organism.sensors.test-sensors
+;; Run: REPO=/path/to/body kbb -M:test -n kotodama.organism.sensors.test-sensors
 (ns kotodama.organism.sensors.test-sensors
   "clojure.test suite for cljc sensor ports.
    Tests cover:
