@@ -4,7 +4,7 @@
   shape, content-addressing determinism + commit-DAG chaining, and the EDN log
   line round-trip. The file-backed append/read edge is #?(:clj) IO, deferred."
   (:require [kotoba.test :refer [deftest is testing]]
-            #?(:clj [clojure.edn :as edn] :cljs [cljs.reader :as edn])
+            #?(:clj [kotoba.lang.edn :as edn] :cljs [cljs.reader :as edn])
             [kotoba.datom :as kd]))
 
 (deftest canonical-json-parity
