@@ -1,7 +1,7 @@
 (ns kotodama.organism-test
   "The generic organism runtime drives ANY actor via injected :validate/:emit —
   verified here with a domain-free mock actor (no UNSPSC, no taxonomy)."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [kotodama.organism :as org]
             [kotodama.life :as life]))
 

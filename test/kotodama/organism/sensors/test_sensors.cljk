@@ -9,7 +9,7 @@
      3. Charter-rider scan correctness (clean / fossil / promo / surveillance).
      4. count-glob optimisation — shallow patterns don't descend full tree.
      5. Evangelism gate correctness (ADR-2607061700 §1.16 carve-out)."
-  (:require [kotoba.lang.text] [clojure.test :refer [deftest is testing run-tests]]
+  (:require [kotoba.lang.text] [kotoba.test :refer [deftest is testing run-tests]]
             [kotodama.organism.sensors.common :as c]
             [kotodama.organism.sensors.autopoiesis :as ap]
             [kotodama.organism.sensors.active-inference :as ai]
