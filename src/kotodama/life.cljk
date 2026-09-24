@@ -4,7 +4,7 @@
   cadence gates outward activity; the Stage-D prior-consensus fold lets an actor
   read its own priors. All pure, all generic — no domain knowledge. Each actor
   individuates from its own history, so a fleet is organically distinct, not clones."
-  (:require [clojure.set :as set]))
+  (:require [kotoba.lang.coll :as set]))
 
 (def base-joucho {:joy 50 :calm 50 :stress 40 :gratitude 50 :focus 50})
 
