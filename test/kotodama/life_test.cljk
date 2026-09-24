@@ -1,6 +1,6 @@
 (ns kotodama.life-test
   "Stage-D prior-consensus + joucho fold — pure, generic."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [kotodama.life :as life]))
 
 (deftest prior-consensus-parity

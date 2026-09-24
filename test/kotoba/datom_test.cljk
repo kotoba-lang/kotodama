@@ -3,7 +3,7 @@
   + ADR-2605312345). Pins canonical-json (the CID preimage), the EAVT datom
   shape, content-addressing determinism + commit-DAG chaining, and the EDN log
   line round-trip. The file-backed append/read edge is #?(:clj) IO, deferred."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             #?(:clj [clojure.edn :as edn] :cljs [cljs.reader :as edn])
             [kotoba.datom :as kd]))
 
