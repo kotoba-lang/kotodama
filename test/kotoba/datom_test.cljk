@@ -22,7 +22,7 @@
     (is (= "\"a\\\"b\"" (kd/canonical-json "a\"b")))
     (is (= "\"x\\ny\"" (kd/canonical-json "x\ny"))))
   (testing "unsupported value throws"
-    (is (thrown? #?(:clj clojure.lang.ExceptionInfo :cljs :default)
+    (is (thrown? :default
                  (kd/canonical-json :a-keyword)))))
 
 (deftest datom-shape-and-normalization

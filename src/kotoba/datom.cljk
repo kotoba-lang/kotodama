@@ -14,10 +14,10 @@
   sha-256 (JVM/babashka MessageDigest; other hosts bind *sha256-hex*) and the
   file I/O at the append/read edge (kotoba-clj WASM hosts route these through
   kqe-assert!/kqe-get-objects instead)."
-  (:require [kotoba.lang.text :as str]
+  (:require [kotoba.bytes :as kbytes] [kotoba.lang.text :as str]
             #?(:clj [kotoba.lang.edn :as edn]
                :cljs [cljs.reader :as edn])
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 ;; ─── sha-256 (host seam) ──────────────────────────────────────────
 
@@ -25,7 +25,7 @@
   "String → lowercase hex sha-256 digest. Rebind on hosts without MessageDigest."
   #?(:clj (fn [^String s]
             (let [d (.digest (java.security.MessageDigest/getInstance "SHA-256")
-                             (.getBytes s "UTF-8"))]
+                             (kbytes/utf8-bytes s))]
               (str/join (map #(let [h (Integer/toHexString (bit-and % 0xff))]
                                 (if (= 1 (count h)) (str "0" h) h))
                              d))))
@@ -127,8 +127,8 @@
      "Append ONE transaction line (the log only ever grows — 永久記憶). Returns the CID."
      [tx log-path]
      (let [f (io/file log-path)]
-       (when-let [p (.getParentFile f)] (.mkdirs p))
-       (when-not (.exists f) (spit f log-header))
+       (when-let [p (io/parent-file f)] (io/mkdirs p))
+       (when-not (io/exists? f) (spit f log-header))
        (spit f (str (tx->edn-line tx) "\n") :append true)
        (:tx/cid tx))))
 
@@ -137,7 +137,7 @@
      "Parsed transactions, oldest first. Datoms are normalized to \":…\" strings."
      [log-path]
      (let [f (io/file log-path)]
-       (if-not (.exists f)
+       (if-not (io/exists? f)
          []
          (into []
                (comp (map str/trim)
