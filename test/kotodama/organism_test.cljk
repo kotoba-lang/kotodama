@@ -1,7 +1,7 @@
 (ns kotodama.organism-test
   "The generic organism runtime drives ANY actor via injected :validate/:emit —
   verified here with a domain-free mock actor (no UNSPSC, no taxonomy)."
-  (:require [kotoba.test :refer [deftest is testing]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is testing]]
             [kotodama.organism :as org]
             [kotodama.life :as life]))
 
@@ -36,7 +36,7 @@
       (is (nil? (:shortcut (org/run a {})))))))
 
 (deftest validate-is-required
-  (is (thrown? clojure.lang.ExceptionInfo (org/actor {:taxon taxon}))))
+  (is (thrown? kerror/ExceptionInfo (org/actor {:taxon taxon}))))
 
 (deftest emit-can-be-overridden
   (let [a (org/actor {:taxon taxon :validate mock-validate
